@@ -22,6 +22,7 @@
     "express": "^4.16.2",
     "helmet": "^3.11.0",
     "jsonwebtoken": "^8.1.1",
+    "killable": "^1.0.1",
     "morgan": "^1.9.0",
     "mssql": "^4.1.0",
     "node-cron": "^1.2.1",
@@ -29,6 +30,6 @@
     "nodemon": "^1.15.1",
     "simple-node-logger": "^0.93.37",
     "winston": "^2.4.0",
-    "zip-folder": "^1.0.0"
+    "bestzip": "^2.1.2"
   }
 }

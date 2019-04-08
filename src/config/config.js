@@ -1,10 +1,18 @@
 module.exports = {
     
     'secret'  : 'Test',
-    'http-server-port': '45451',
-    'https-server-port': '45452',
+    'httpServerPort': '45451',
+    'httpsServerPort': '45452',
+    'httpEnabled': true,
+    'httpsEnabled': false,
     'version': '1.0.0',
     'type': 'DEV',
+
+    'modelServerType': 'MNG',
+    'modelServerAddress': '127.0.0.1',
+    'modelServerPort': '1111',
+    'modelServerUser': 'Test',
+    'modelServerPwd': 'Test',
 
     'logingEnabled': true, 
     'basicLogFolder': 'services/logservice/logs',

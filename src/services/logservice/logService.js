@@ -44,9 +44,6 @@ function addLogEntry(logTargetType,logType,logText){
             case 1:
                 log.warn(logText)
                 break;
-            case 2:
-                log.error(logText)
-                break;
         }
     }
 
@@ -57,9 +54,6 @@ function addLogEntry(logTargetType,logType,logText){
                 break;
             case 1:
                 errorlog.warn(logText)
-                break;
-            case 2:
-                errorlog.error(logText)
                 break;
         }
     }
@@ -72,9 +66,6 @@ function addLogEntry(logTargetType,logType,logText){
             case 1:
                 securitylog.warn(logText)
                 break;
-            case 2:
-                securitylog.error(logText)
-                break;
         }
     }
 }
@@ -85,4 +76,14 @@ function serverStartedLog(){
     addLogEntry(2,0,"Server Started! - ", config.version);
 }
 
+function addErrorLogErrorEntry(logText){
+    addLogEntry(1,1,logText);
+}
+
+function addInfoLogBasicInfoEntry(logText){
+    addLogEntry(0,0,logText);
+}
+
 module.exports.addLogEntry = addLogEntry;
+module.exports.addErrorLogErrorEntry = addErrorLogErrorEntry;
+module.exports.addInfoLogBasicInfoEntry = addInfoLogBasicInfoEntry;

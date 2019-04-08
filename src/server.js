@@ -6,11 +6,6 @@ const fs = require('fs');
 const https = require('https');
 const http = require('http');
 
-//var privateKey = fs.readFileSync('sslcert/server.key', 'utf8');
-//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-
-//var credentials = { key: privateKey, cert: certificate };
-
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -18,7 +13,7 @@ var morgan = require('morgan');
 var mssql = require('mssql');
 var path = require('path');
 
-var zipFolder = require('zip-folder');
+var zipFolder = require('bestzip');
 
 var cron = require('node-cron');
 
@@ -33,13 +28,15 @@ if(config.authEnabled) var authService = require("../src/services/authService/au
 
 // Server START
 
-var httpServer = http.createServer(app);
-//var httpsServer = https.createServer(credentials, app);
+var server = require('../src/services/serverService/serverService');
 
-httpServer.listen(config["http-server-port"]);
-//httpsServer.listen(config["https-server-port"]);
+if(config.httpsEnabled){
+    server.startHTTPSServer(app,config.httpsServerPort);
+} else {
+    if(config.httpEnabled){
+        server.startHTTPServer(app,config.httpServerPort);
+    } else {
+        if(!config.httpsEnabled) server.startHTTPDefaultServer(app);
+    }
+}
 
-//app.listen(config["http-server-port"]);
-//https.createServer(options, app).listen(config["https-server-port"]);
-console.log('Magic happens at http://localhost:' + config["http-server-port"]);
-//console.log('Magic happens at https://localhost:' + config["https-server-port"]);
