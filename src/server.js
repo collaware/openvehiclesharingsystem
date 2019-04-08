@@ -28,7 +28,8 @@ var Secret = config.secret;
 
 // Service Module loading
 
-if(config.logingEnabled) var logService = require("../src/services/logservice/log");
+if(config.logingEnabled) var logService = require("../src/services/logService/logService");
+if(config.authEnabled) var authService = require("../src/services/authService/authService");
 
 // Server START
 

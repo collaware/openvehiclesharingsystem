@@ -1,6 +1,5 @@
 const fs = require('fs');
 var express = require('express');
-var mssql = require('mssql');
 var router = express.Router();
 
 var jwt = require('jsonwebtoken');

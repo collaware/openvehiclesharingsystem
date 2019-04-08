@@ -7,6 +7,8 @@ module.exports = {
     'type': 'DEV',
 
     'logingEnabled': true, 
-    'basicLogFolder': 'services/logservice/logs'
+    'basicLogFolder': 'services/logservice/logs',
+
+    'authEnabled': true,
     
 };
