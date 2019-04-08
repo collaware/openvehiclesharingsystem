@@ -1,4 +1,6 @@
 module.exports = {
+    'serverName:': 'ovss_dev_1',
+    'companyName': 'YourCompany',
     
     'secret'  : 'Test',
     'httpServerPort': '45451',
@@ -10,9 +12,10 @@ module.exports = {
 
     'modelServerType': 'MNG',
     'modelServerAddress': '127.0.0.1',
-    'modelServerPort': '1111',
+    'modelServerPort': '27017',
     'modelServerUser': 'Test',
     'modelServerPwd': 'Test',
+    'modelServerDataBase': 'ovss_dev_1',
 
     'logingEnabled': true, 
     'basicLogFolder': 'services/logservice/logs',

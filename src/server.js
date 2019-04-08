@@ -10,21 +10,42 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var mssql = require('mssql');
-var path = require('path');
 
-var zipFolder = require('bestzip');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
-var cron = require('node-cron');
 
 var jwt = require('jsonwebtoken');
 var config = require('../src/config/config');
-var Secret = config.secret;
+app.set('superSecret', config.secret);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(morgan('dev'));
 
 // Service Module loading
 
 if(config.logingEnabled) var logService = require("../src/services/logService/logService");
 if(config.authEnabled) var authService = require("../src/services/authService/authService");
+
+switch (config.modelServerType) {
+    case 'MNG':
+        var modelService = require('../src/model/mongoDB/manager')
+        break;
+
+    default:
+        var modelService = require('../src/model/mongoDB/manager')
+        break;
+}
+
+//API
+var router = express.Router();
+app.use('/api', router);
+
+router.get('/', function(req, res) {
+    res.json({ message: 'Welcome to '+ config["serverName:"] + ' server by '+ config.companyName +'!' });
+});
 
 // Server START
 

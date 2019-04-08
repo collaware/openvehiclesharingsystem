@@ -17,19 +17,21 @@
   },
   "homepage": "https://github.com/collaware/openvehiclesharingsystem#readme",
   "dependencies": {
+    "bestzip": "^2.1.2",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "helmet": "^3.11.0",
     "jsonwebtoken": "^8.1.1",
     "killable": "^1.0.1",
-    "morgan": "^1.9.0",
+    "mongoose": "^5.4.22",
+    "morgan": "^1.9.1",
     "mssql": "^4.1.0",
     "node-cron": "^1.2.1",
     "nodemailer": "^4.6.0",
     "nodemon": "^1.15.1",
+    "router": "^1.3.3",
     "simple-node-logger": "^0.93.37",
-    "winston": "^2.4.0",
-    "bestzip": "^2.1.2"
+    "winston": "^2.4.0"
   }
 }
