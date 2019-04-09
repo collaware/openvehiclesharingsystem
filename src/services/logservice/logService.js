@@ -35,8 +35,8 @@ var zipped = 'archive-' + Date.now() + '.zip'
 
 serverStartedLog();
 
-function addLogEntry(logTargetType,logType,logText){
-    if(logTargetType == 0) {
+function addLogEntry(logTargetType, logType, logText) {
+    if (logTargetType == 0) {
         switch (logType) {
             case 0:
                 log.info(logText)
@@ -47,7 +47,7 @@ function addLogEntry(logTargetType,logType,logText){
         }
     }
 
-    if(logTargetType == 1) {
+    if (logTargetType == 1) {
         switch (logType) {
             case 0:
                 errorlog.info(logText)
@@ -58,7 +58,7 @@ function addLogEntry(logTargetType,logType,logText){
         }
     }
 
-    if(logTargetType == 2) {
+    if (logTargetType == 2) {
         switch (logType) {
             case 0:
                 securitylog.info(logText)
@@ -70,52 +70,52 @@ function addLogEntry(logTargetType,logType,logText){
     }
 }
 
-function serverStartedLog(){
-    addLogEntry(0,0,"Server Started! - ", config.version);
-    addLogEntry(1,0,"Server Started! - ", config.version);
-    addLogEntry(2,0,"Server Started! - ", config.version);
+function serverStartedLog() {
+    addLogEntry(0, 0, "Server Started! - ", config.version);
+    addLogEntry(1, 0, "Server Started! - ", config.version);
+    addLogEntry(2, 0, "Server Started! - ", config.version);
 }
 
-function addErrorLogErrorEntry(logText){
-    addLogEntry(1,1,logText);
+function addErrorLogErrorEntry(logText) {
+    addLogEntry(1, 1, logText);
 }
 
-function addInfoLogBasicInfoEntry(logText){
-    addLogEntry(0,0,logText);
+function addInfoLogBasicInfoEntry(logText) {
+    addLogEntry(0, 0, logText);
 }
 
-function registerUserSuccessfullEntry(logText){
+function registerUserSuccessfullEntry(logText) {
     addInfoLogBasicInfoEntry(logText);
 }
 
-function registerUserErrorEntry(logText){
+function registerUserErrorEntry(logText) {
     addInfoLogBasicInfoEntry("Error registering User! " + logText);
     addErrorLogErrorEntry("Error registering User! " + logText);
 }
 
-function updateUserSuccessfullEntry(logText){
+function updateUserSuccessfullEntry(logText) {
     addInfoLogBasicInfoEntry(logText);
 }
 
-function updateUserErrorEntry(logText){
+function updateUserErrorEntry(logText) {
     addInfoLogBasicInfoEntry("Error Updating User! " + logText);
     addErrorLogErrorEntry("Error Updating User! " + logText);
 }
 
-function queryUsersSuccessEntry(logText){
+function queryUsersSuccessEntry(logText) {
     addInfoLogBasicInfoEntry(logText);
 }
 
-function queryUsersErrorEntry(logText){
+function queryUsersErrorEntry(logText) {
     addInfoLogBasicInfoEntry("Error Query Users! " + logText);
     addErrorLogErrorEntry("Error Query Users! " + logText);
 }
 
-function querySingleUserSuccessEntry(logText){
+function querySingleUserSuccessEntry(logText) {
     addInfoLogBasicInfoEntry(logText);
 }
 
-function querySingleUserErrorEntry(logText){
+function querySingleUserErrorEntry(logText) {
     addInfoLogBasicInfoEntry("Error Query User! " + logText);
     addErrorLogErrorEntry("Error Query User! " + logText);
 }

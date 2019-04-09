@@ -1,8 +1,8 @@
 module.exports = {
     'serverName:': 'ovss_dev_1',
     'companyName': 'YourCompany',
-    
-    'secret'  : 'Test',
+
+    'secret': 'Test',
     'httpServerPort': '45451',
     'httpsServerPort': '45452',
     'httpEnabled': true,
@@ -17,9 +17,10 @@ module.exports = {
     'modelServerPwd': 'Test',
     'modelServerDataBase': 'ovss_dev_1',
 
-    'logingEnabled': true, 
+    'logingEnabled': true,
     'basicLogFolder': 'services/logservice/logs',
 
     'authEnabled': true,
-    
+    'userServiceEnabled': true,
+
 };

@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var config = require('../../config/config');
 
 function authentication(creds, callback) {
-    
+
 }
 
 module.exports.authentication = authentication;
