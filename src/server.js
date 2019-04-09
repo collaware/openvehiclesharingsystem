@@ -31,13 +31,15 @@ if(config.authEnabled) var authService = require("../src/services/authService/au
 
 switch (config.modelServerType) {
     case 'MNG':
-        var modelService = require('../src/model/mongoDB/manager')
+        var modelService = require('../src/model/mongoDB/management')
         break;
 
     default:
-        var modelService = require('../src/model/mongoDB/manager')
+        var modelService = require('../src/model/mongoDB/management')
         break;
 }
+
+var userService = require('../src/services/userService/userService');
 
 //API
 var router = express.Router();
@@ -45,6 +47,22 @@ app.use('/api', router);
 
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome to '+ config["serverName:"] + ' server by '+ config.companyName +'!' });
+});
+
+router.get('/user',function(req, res){
+
+});
+
+router.post('/user/registerUser', function(req, res){
+    userService.addNewUser(req.body.data,function(result){
+        res.json(result);
+    })
+});
+
+router.get('/user/getAllUsers', function(req,res){
+    userService.getAllUsers("test",function(result){
+        res.json(result);
+    })
 });
 
 // Server START

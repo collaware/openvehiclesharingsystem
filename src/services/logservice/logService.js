@@ -84,6 +84,28 @@ function addInfoLogBasicInfoEntry(logText){
     addLogEntry(0,0,logText);
 }
 
+function registerSuccessfullEntry(logText){
+    addInfoLogBasicInfoEntry(logText);
+}
+
+function registerErrorEntry(logText){
+    addInfoLogBasicInfoEntry("Error registering User! " + logText);
+    addErrorLogErrorEntry("Error registering User! " + logText);
+}
+
+function queryUsersSuccessEntry(logText){
+    addInfoLogBasicInfoEntry(logText);
+}
+
+function queryUsersErrorEntry(logText){
+    addInfoLogBasicInfoEntry("Error Query Users! " + logText);
+    addErrorLogErrorEntry("Error Query Users! " + logText);
+}
+
 module.exports.addLogEntry = addLogEntry;
 module.exports.addErrorLogErrorEntry = addErrorLogErrorEntry;
 module.exports.addInfoLogBasicInfoEntry = addInfoLogBasicInfoEntry;
+module.exports.registerSuccessfullEntry = registerSuccessfullEntry;
+module.exports.registerErrorEntry = registerErrorEntry;
+module.exports.queryUsersSuccessEntry = queryUsersSuccessEntry;
+module.exports.queryUsersErrorEntry = queryUsersErrorEntry;
