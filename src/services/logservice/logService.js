@@ -84,13 +84,22 @@ function addInfoLogBasicInfoEntry(logText){
     addLogEntry(0,0,logText);
 }
 
-function registerSuccessfullEntry(logText){
+function registerUserSuccessfullEntry(logText){
     addInfoLogBasicInfoEntry(logText);
 }
 
-function registerErrorEntry(logText){
+function registerUserErrorEntry(logText){
     addInfoLogBasicInfoEntry("Error registering User! " + logText);
     addErrorLogErrorEntry("Error registering User! " + logText);
+}
+
+function updateUserSuccessfullEntry(logText){
+    addInfoLogBasicInfoEntry(logText);
+}
+
+function updateUserErrorEntry(logText){
+    addInfoLogBasicInfoEntry("Error Updating User! " + logText);
+    addErrorLogErrorEntry("Error Updating User! " + logText);
 }
 
 function queryUsersSuccessEntry(logText){
@@ -102,10 +111,23 @@ function queryUsersErrorEntry(logText){
     addErrorLogErrorEntry("Error Query Users! " + logText);
 }
 
+function querySingleUserSuccessEntry(logText){
+    addInfoLogBasicInfoEntry(logText);
+}
+
+function querySingleUserErrorEntry(logText){
+    addInfoLogBasicInfoEntry("Error Query User! " + logText);
+    addErrorLogErrorEntry("Error Query User! " + logText);
+}
+
 module.exports.addLogEntry = addLogEntry;
 module.exports.addErrorLogErrorEntry = addErrorLogErrorEntry;
 module.exports.addInfoLogBasicInfoEntry = addInfoLogBasicInfoEntry;
-module.exports.registerSuccessfullEntry = registerSuccessfullEntry;
-module.exports.registerErrorEntry = registerErrorEntry;
+module.exports.registerUserSuccessfullEntry = registerUserSuccessfullEntry;
+module.exports.registerUserErrorEntry = registerUserErrorEntry;
+module.exports.updateUserSuccessfullEntry = updateUserSuccessfullEntry;
+module.exports.updateUserErrorEntry = updateUserErrorEntry;
 module.exports.queryUsersSuccessEntry = queryUsersSuccessEntry;
 module.exports.queryUsersErrorEntry = queryUsersErrorEntry;
+module.exports.querySingleUserSuccessEntry = querySingleUserSuccessEntry;
+module.exports.querySingleUserErrorEntry = querySingleUserErrorEntry;

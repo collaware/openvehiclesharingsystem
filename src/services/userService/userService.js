@@ -32,9 +32,19 @@ function addNewUser(data, callback){
     management.registerUser(data, User, callback);
 }
 
-function getAllUsers(Login, callback){
-    management.getAllUsers(Login, User ,callback);
+function updateUser(data, callback){
+    management.updateUser(data, User, callback);
+}
+
+function getAllUsers(data, callback){
+    management.getAllUsers(data.login, User ,callback);
+}
+
+function findUserByLogin(data, callback){
+    management.findUserByLogin(data.login, User, callback);
 }
 
 module.exports.addNewUser = addNewUser;
+module.exports.updateUser = updateUser;
 module.exports.getAllUsers = getAllUsers;
+module.exports.findUserByLogin = findUserByLogin;

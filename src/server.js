@@ -50,7 +50,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/user',function(req, res){
-
+    res.json({ 
+        message: "User management Service!"
+    });
 });
 
 router.post('/user/registerUser', function(req, res){
@@ -60,7 +62,19 @@ router.post('/user/registerUser', function(req, res){
 });
 
 router.get('/user/getAllUsers', function(req,res){
-    userService.getAllUsers("test",function(result){
+    userService.getAllUsers("Test",function(result){
+        res.json(result);
+    })
+});
+
+router.post('/user/findUserByLogin', function(req,res){
+    userService.findUserByLogin(req.body.data,function(result){
+        res.json(result);
+    });
+});
+
+router.all('/user/updateUser', function(req,res){
+    userService.updateUser(req.body.data,function(result){
         res.json(result);
     })
 });
