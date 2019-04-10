@@ -28,23 +28,23 @@ function mongoLoader() {
     management.connectToDB();
 }
 
-function addNewUser(data, callback) {
-    management.registerUser(data, User, callback);
+function addNewGroup(data, callback){
+    management.registerGroup(data, Group, callback);
 }
 
-function updateUser(data, callback) {
-    management.updateUser(data, User, callback);
+function getAllUserGroup(data,callback){
+    management.getAllUserGroups(data.name, Group, callback);
 }
 
-function getAllUsers(data, callback) {
-    management.getAllUsers(data.login, User, callback);
+function findUserGroupByName(data, callback){
+    management.findUserGroupByName(data.name,Group,callback)
 }
 
-function findUserByLogin(data, callback) {
-    management.findUserByLogin(data.login, User, callback);
+function updateUserGroup(data, callback){
+    management.updateUserGroup(data, Group, callback);
 }
 
-module.exports.addNewUser = addNewUser;
-module.exports.updateUser = updateUser;
-module.exports.getAllUsers = getAllUsers;
-module.exports.findUserByLogin = findUserByLogin;
+module.exports.addNewGroup = addNewGroup;
+module.exports.getAllUserGroup = getAllUserGroup;
+module.exports.findUserGroupByName = findUserGroupByName;
+module.exports.updateUserGroup = updateUserGroup;

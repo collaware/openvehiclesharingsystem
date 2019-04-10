@@ -42,6 +42,8 @@ switch (config.modelServerType) {
 }
 
 if (config.userServiceEnabled) var userService = require('../src/services/userService/userService');
+if (config.userGroupServiceEnabled) var userGroupService = require('../src/services/groupService/userGroupService');
+
 
 //API
 var router = express.Router();
@@ -80,6 +82,36 @@ if (config.userServiceEnabled) {
 
     router.all('/user/updateUser', function (req, res) {
         userService.updateUser(req.body.data, function (result) {
+            res.json(result);
+        })
+    });
+}
+
+if(config.userGroupServiceEnabled) {
+    router.get('/user/group',function(req,res){
+        res.json({message: "User Group management Service!"});
+    });
+
+    router.post('/user/group/registerUserGroup',function(req,res){
+        userGroupService.addNewGroup(req.body.data,function(result){
+            res.json(result);
+        })
+    });
+
+    router.get('/user/group/getAllUserGroups', function(req,res){
+        userGroupService.getAllUserGroup("Test",function(result){
+            res.json(result);
+        })
+    });
+
+    router.post('/user/group/findUserGroupByName', function(req,res){
+        userGroupService.findUserGroupByName(req.body.data,function(result){
+            res.json(result);
+        })
+    });
+
+    router.all('/user/group/updateUserGroup',function(req,res){
+        userGroupService.updateUserGroup(req.body.data,function(result){
             res.json(result);
         })
     });

@@ -84,6 +84,10 @@ function addInfoLogBasicInfoEntry(logText) {
     addLogEntry(0, 0, logText);
 }
 
+/*
+    USER LOGS
+*/
+
 function registerUserSuccessfullEntry(logText) {
     addInfoLogBasicInfoEntry(logText);
 }
@@ -120,9 +124,23 @@ function querySingleUserErrorEntry(logText) {
     addErrorLogErrorEntry("Error Query User! " + logText);
 }
 
+/*
+    USER GROUP LOGS
+*/
+
+function registerUserGroupSuccessfullEntry(logText){
+    addInfoLogBasicInfoEntry(logText);
+}
+
+function registerUserGroupErrorEntry(logText){
+    addInfoLogBasicInfoEntry("Error registering User Group! " + logText);
+    addErrorLogErrorEntry("Error registering User Group! " + logText);
+}
+
 module.exports.addLogEntry = addLogEntry;
 module.exports.addErrorLogErrorEntry = addErrorLogErrorEntry;
 module.exports.addInfoLogBasicInfoEntry = addInfoLogBasicInfoEntry;
+//USER lOGS Exports
 module.exports.registerUserSuccessfullEntry = registerUserSuccessfullEntry;
 module.exports.registerUserErrorEntry = registerUserErrorEntry;
 module.exports.updateUserSuccessfullEntry = updateUserSuccessfullEntry;
@@ -131,3 +149,6 @@ module.exports.queryUsersSuccessEntry = queryUsersSuccessEntry;
 module.exports.queryUsersErrorEntry = queryUsersErrorEntry;
 module.exports.querySingleUserSuccessEntry = querySingleUserSuccessEntry;
 module.exports.querySingleUserErrorEntry = querySingleUserErrorEntry;
+//USERGROUP LOGS Exports
+module.exports.registerUserGroupSuccessfullEntry = registerUserGroupSuccessfullEntry;
+module.exports.registerUserGroupErrorEntry = registerUserGroupErrorEntry;

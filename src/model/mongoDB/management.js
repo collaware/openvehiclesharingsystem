@@ -10,6 +10,10 @@ function connectToDB() {
     });
 }
 
+/* 
+    USER MANAGEMENT 
+*/
+
 function getAllUsers(Login, User, callback) {
     User.find({}, function (err, users) {
         if (err) {
@@ -22,7 +26,7 @@ function getAllUsers(Login, User, callback) {
             callback(done);
         } else {
             var done = {
-                'success': false,
+                'success': true,
                 'message': 'Successful, User Found! At Function 100',
                 'user': users
             };
@@ -143,8 +147,142 @@ function updateUser(data, User, callback) {
     });
 }
 
+/*
+    GROUP MANAGEMENT
+*/
+
+function getAllUserGroups(Login, Group, callback) {
+    Group.find({}, function (err, groups) {
+        if (err) {
+            var done = {
+                'success': false,
+                'message': 'Authentication failed or User Group not found. At Function 104',
+                'error': err
+            }
+            if (config.logingEnabled) logService.queryUsersErrorEntry(Login + ' F104 ' + true + " result: " + JSON.stringify(done) + " error: " + JSON.stringify(err));
+            callback(done);
+        } else {
+            var done = {
+                'success': true,
+                'message': 'Successful, User Group Found! At Function 104',
+                'groups': groups
+            };
+            if (config.logingEnabled) logService.queryUsersSuccessEntry(Login + ' F104 ' + false + " reuslt: " + JSON.stringify(done));
+            callback(done);
+        }
+    });
+}
+
+function findUserGroupByName(Name, Group, callback) {
+    Group.findOne({
+        name: name
+    }, function (err, group) {
+        if (err) {
+            var done = {
+                'success': false,
+                'message': 'Authentication failed or User Group not found. At Function 105',
+                "Error": err
+            };
+            if (config.logingEnabled) logService.querySingleUserErrorEntry(Name + ' F105 ' + true + " result: " + JSON.stringify(done) + " error: " + JSON.stringify(err));
+            callback(done);
+        } else {
+            if (!user) {
+                var done = {
+                    'success': false,
+                    'message': 'User Group Not found in database! At Function 105',
+                    'group': group
+                };
+                if (config.logingEnabled) logService.querySingleUserSuccessEntry(Name + ' F105 ' + false + " result " + JSON.stringify(done));
+                callback(done);
+            } else {
+                var done = {
+                    'success': true,
+                    'message': 'Successful, User Found! At Function 101',
+                    'group': group
+                };
+                if (config.logingEnabled) logService.querySingleUserSuccessEntry(Name + ' F105 ' + false + " result: " + JSON.stringify(done));
+                callback(done);
+            }
+        }
+    });
+}
+
+function registerGroup(data, Group, callback) {
+    var nick = new Group({
+        name: data.name,
+        description: data.description,
+        adminId: data.adminId
+    });
+
+    nick.save(function (err) {
+        if (err) {
+            var done = {
+                'success': false,
+                'message': 'Authentication failed or User not found. At Function 106',
+                "Error": err
+            };
+            if (config.logingEnabled) logService.registerUserGroupErrorEntry('Log Done at Function F106, ' + Date.now() + " result: " + JSON.stringify(done) + " error: " + JSON.stringify(err));
+            callback(done);
+        } else {
+            var done = {
+                'success': true,
+                'message': 'Group Register Succesful At Function 102',
+                'group': nick
+            };
+            if (config.logingEnabled) logService.registerUserGroupSuccessfullEntry('Log Done at Function F106, ' + Date.now() + " " + JSON.stringify(done));
+            callback(done)
+        }
+    });
+}
+
+function updateUserGroup(data, Group, callback) {
+    Group.findOne({
+        login: data.name
+    }, function (err, Group) {
+        if (err) {
+            var done = {
+                'success': false,
+                'message': 'User Group Update Error! At Function F103',
+                'error': err
+            };
+            if (config.logingEnabled) logService.updateUserErrorEntry(data.name + ' F103 ' + true + " result: " + JSON.stringify(done) + " error: " + JSON.stringify(err));
+            callback(err);
+        } else {
+            if (data.name != undefined) user.name = data.name;
+            if (data.description != undefined) user.description = data.description;
+            if (data.adminId != undefined) user.adminId = data.adminId;
+            Group.save(function (err, updatedUserGroup) {
+                if (err) {
+                    var done = {
+                        'success': false,
+                        'message': 'User Update Error! At Function 103',
+                        'error': err
+                    };
+                    if (config.logingEnabled) logService.updateUserErrorEntry(data.name + ' F103 ' + true + " result: " + JSON.stringify(done) + " error: " + JSON.stringify(err));
+                    callback(done);
+                } else {
+                    var done = {
+                        'success': true,
+                        'message': 'User Update Succesful At Function 103',
+                        'updatedUserGroup': updatedUserGroup
+                    };
+                    if (config.logingEnabled) logService.updateUserSuccessfullEntry(data.name + ' F103 ' + false + " result: " + JSON.stringify(done));
+                    callback(done);
+                }
+            });
+        }
+    });
+}
+
+//DB CONNECT Export
 module.exports.connectToDB = connectToDB;
+//USERMGMT Export
 module.exports.getAllUsers = getAllUsers;
 module.exports.findUserByLogin = findUserByLogin;
 module.exports.registerUser = registerUser;
 module.exports.updateUser = updateUser;
+//GROUPMGMT Export
+module.exports.registerGroup = registerGroup;
+module.exports.getAllUserGroups = getAllUserGroups;
+module.exports.findUserGroupByName = findUserGroupByName;
+module.exports.updatedUserGroup = updateUserGroup;

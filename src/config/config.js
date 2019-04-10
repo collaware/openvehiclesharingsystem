@@ -11,7 +11,7 @@ module.exports = {
     'type': 'DEV',
 
     'modelServerType': 'MNG',
-    'modelServerAddress': '127.0.0.1',
+    'modelServerAddress': '25.15.230.83',
     'modelServerPort': '27017',
     'modelServerUser': 'Test',
     'modelServerPwd': 'Test',
@@ -22,5 +22,6 @@ module.exports = {
 
     'authEnabled': true,
     'userServiceEnabled': true,
+    'userGroupServiceEnabled': true,
 
 };
